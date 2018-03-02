@@ -7,6 +7,7 @@ public class Ctrl : MonoBehaviour
     public Model Model { get; private set; }
     public View View { get; private set; }
     public CameraManager CameraManager { get; private set; }
+    public MainGameManager MainGameManager { get; private set; }
 
     private FSMSystem fsm;
 
@@ -14,7 +15,8 @@ public class Ctrl : MonoBehaviour
     {
         Model = GameObject.Find("Model").GetComponent<Model>();
         View = GameObject.Find("View").GetComponent<View>();
-        CameraManager = GameObject.Find(ObjectsName.mainCameraPath).GetComponent<CameraManager>();
+        CameraManager = GameObject.Find(NameLayerTag.mainCameraPath).GetComponent<CameraManager>();
+        MainGameManager = transform.GetComponent<MainGameManager>();
     }
 
     private void Start()

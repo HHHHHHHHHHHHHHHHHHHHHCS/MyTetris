@@ -14,11 +14,11 @@ public class CameraManager : MonoBehaviour
 
     public void ZoomIn()
     {
-        mainCamera.DOOrthoSize(18f, 0.5f);
+        mainCamera.DOOrthoSize(14f, 0.5f);
     }
 
     public void ZoomOut()
     {
-        mainCamera.DOOrthoSize(14f, 0.5f);
+        mainCamera.DOOrthoSize(18f, 0.5f);
     }
 }

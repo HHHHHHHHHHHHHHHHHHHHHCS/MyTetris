@@ -12,14 +12,13 @@ public class MenuState : FSMState
 
     public override void DoBeforeEntering()
     {
-        GameCtrl.View.ShowMenu();
-        GameCtrl.CameraManager.ZoomIn();
+        GameCtrl.View.ShowMenuUI();
+        GameCtrl.CameraManager.ZoomOut();
     }
 
     public override void DoBeforeLeaving()
     {
-        GameCtrl.View.HideMenu();
-        GameCtrl.CameraManager.ZoomOut();
+        GameCtrl.View.HideMenuUI();
     }
 
     public void OnStartButtonClick()
