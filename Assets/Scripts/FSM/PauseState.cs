@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class PauseState : FSMState
 {
-
+    private PauseState()
+    {
+        stateID = StateID.Pause;
+    }
 }

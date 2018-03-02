@@ -52,6 +52,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
 public enum Transition
 {
     NullTransition = 0, // Use this transition to represent a non-existing transition in your system
+    StartButtonClick,
 }
 
 /// <summary>
@@ -75,8 +76,10 @@ public enum StateID
 /// Method Reason is used to determine which transition should be fired .
 /// Method Act has the code to perform the actions the NPC is supposed do if it's on this state.
 /// </summary>
-public abstract class FSMState
+public abstract class FSMState : MonoBehaviour
 {
+    public static Ctrl GameCtrl { get; set; }
+    public static FSMSystem FSM { get; set; }
     protected Dictionary<Transition, StateID> map = new Dictionary<Transition, StateID>();
     protected StateID stateID;
     public StateID ID { get { return stateID; } }
@@ -179,7 +182,7 @@ public abstract class FSMState
 ///  It has a List with the States the NPC has and methods to add,
 ///  delete a state, and to change the current state the Machine is on.
 /// </summary>
-public class FSMSystem : MonoBehaviour
+public class FSMSystem
 {
     private List<FSMState> states;
 
@@ -199,6 +202,7 @@ public class FSMSystem : MonoBehaviour
     {
         currentState = s;
         currentStateID = s.ID;
+        s.DoBeforeEntering();
     }
 
     /// <summary>
@@ -206,14 +210,21 @@ public class FSMSystem : MonoBehaviour
     /// or prints an ERROR message if the state was already inside the List.
     /// First state added is also the initial state.
     /// </summary>
-    public void AddState(FSMState s)
+    public void AddState(FSMState s, Ctrl c)
     {
         // Check for Null reference before deleting
         if (s == null)
         {
             Debug.LogError("FSM ERROR: Null reference is not allowed");
         }
-
+        if (FSMState.FSM == null)
+        {
+            FSMState.FSM = this;
+        }
+        if (!FSMState.GameCtrl)
+        {
+            FSMState.GameCtrl = c;
+        }
         // First State inserted is also the Initial state,
         //   the state the machine is in when the simulation begins
         if (states.Count == 0)

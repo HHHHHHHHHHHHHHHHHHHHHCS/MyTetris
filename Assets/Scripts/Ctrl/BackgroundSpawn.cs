@@ -32,6 +32,10 @@ public class BackgroundSpawn : MonoBehaviour
 
     private void Spawn()
     {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
         for (int y = 0; y < columnCount; y++)
         {
             Transform parent = new GameObject("Row" + y).transform;
