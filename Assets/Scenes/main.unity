@@ -4985,6 +4985,7 @@ GameObject:
   - component: {fileID: 2092265011}
   - component: {fileID: 2092265012}
   - component: {fileID: 2092265013}
+  - component: {fileID: 2092265014}
   m_Layer: 0
   m_Name: Ctrl
   m_TagString: Untagged
@@ -5044,6 +5045,17 @@ MonoBehaviour:
   - {r: 0.36078432, g: 0.74509805, b: 0.8941177, a: 1}
   - {r: 0.2627451, g: 0.7294118, b: 0.6039216, a: 1}
   - {r: 0.35686275, g: 0.77647066, b: 0.5254902, a: 1}
+--- !u!114 &2092265014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2092265010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceae55d55382e9347a2f120395ba6fc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2108168967
 GameObject:
   m_ObjectHideFlags: 0

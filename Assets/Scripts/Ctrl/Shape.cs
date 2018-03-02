@@ -16,4 +16,9 @@ public class Shape : MonoBehaviour
 
         return this;
     }
+
+    public void Fall()
+    {
+        transform.position += Vector3.down;
+    }
 }

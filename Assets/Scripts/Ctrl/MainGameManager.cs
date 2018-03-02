@@ -11,8 +11,16 @@ public class MainGameManager : MonoBehaviour
     [SerializeField]
     private Color[] colors;
 
+    private const float stepTime = 0.8f;
+
     private bool isPause = true;//游戏是否暂停，默认是暂停的
     private Shape currentShape = null;
+    private float stepTimer;
+
+    private MainGameManager()
+    {
+        stepTimer = stepTime;
+    }
 
     private void Update()
     {
@@ -20,6 +28,19 @@ public class MainGameManager : MonoBehaviour
         if(!currentShape)
         {
             SpawnShape();
+        }
+
+        if(stepTimer<=0)
+        {
+            stepTimer = stepTime;
+            if (currentShape)
+            {
+                currentShape.Fall();
+            }
+        }
+        else
+        {
+            stepTimer -= Time.deltaTime;
         }
     }
 
