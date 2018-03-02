@@ -9,25 +9,20 @@ public class BackgroundSpawn : MonoBehaviour
     [SerializeField]
     private GameObject backgroundBlockPrefab;
 
-    [SerializeField]
-    private int rowCount = 10;
-    [SerializeField]
-    private int columnCount = 12;
-    [SerializeField]
-    private float startPosX = -4.5f;
-    [SerializeField]
-    private float startPosY = -6;
-    [SerializeField]
-    private float stepX = 1f;
-    [SerializeField]
-    private float stepY = 1;
+    private int rowCount = Model.max_Rows;
+    private int columnCount = Model.max_Columns;
+    private float startPosX = Model.startPosX;
+    private float startPosY = Model.startPosY;
+    private float stepX = Model.stepX;
+    private float stepY = Model.stepY;
 
     private void Awake()
     {
-        if(needSpawn)
+        if (needSpawn)
         {
             Spawn();
         }
+        Destroy(this);
     }
 
     private void Spawn()
@@ -47,10 +42,10 @@ public class BackgroundSpawn : MonoBehaviour
         }
     }
 
-    private void SpawnPrefab(int x, int y,Transform parent)
+    private void SpawnPrefab(int x, int y, Transform parent)
     {
         Vector3 pos = new Vector3(startPosX + x * stepX, startPosY + y * stepY, 0);
         var go = Instantiate(backgroundBlockPrefab, pos, Quaternion.identity, parent);
-        go.name = string.Format( "Block {0}_{1}",x,y);
+        go.name = string.Format("Block {0}_{1}", x, y);
     }
 }
