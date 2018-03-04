@@ -79,8 +79,6 @@ public enum StateID
 /// </summary>
 public abstract class FSMState : MonoBehaviour
 {
-    public static Ctrl GameCtrl { get; set; }
-    public static FSMSystem FSM { get; set; }
     protected Dictionary<Transition, StateID> map = new Dictionary<Transition, StateID>();
     protected StateID stateID;
     public StateID ID { get { return stateID; } }
@@ -217,14 +215,6 @@ public class FSMSystem
         if (s == null)
         {
             Debug.LogError("FSM ERROR: Null reference is not allowed");
-        }
-        if (FSMState.FSM == null)
-        {
-            FSMState.FSM = this;
-        }
-        if (!FSMState.GameCtrl)
-        {
-            FSMState.GameCtrl = c;
         }
         // First State inserted is also the Initial state,
         //   the state the machine is in when the simulation begins

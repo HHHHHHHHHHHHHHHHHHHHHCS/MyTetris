@@ -2,6 +2,7 @@
 {
     #region Names
     public const string mainCameraPath = "Main Camera";
+    public const string shapesPath = "View/Shapes";
 
     public const string uiRoot = "UIRoot";
 

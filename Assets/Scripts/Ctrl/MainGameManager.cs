@@ -11,31 +11,30 @@ public class MainGameManager : MonoBehaviour
     [SerializeField]
     private Color[] colors;
 
+    private Transform parent;
+
     private const float stepTime = 0.8f;
 
     private bool isPause = true;//游戏是否暂停，默认是暂停的
     private Shape currentShape = null;
     private float stepTimer;
 
-    private MainGameManager()
-    {
-        stepTimer = stepTime;
-    }
-
     public MainGameManager Init()
     {
+        stepTimer = stepTime;
+        parent = GameObject.Find(NameLayerTag.shapesPath).transform;
         return this;
     }
 
     private void Update()
     {
         if (isPause) return;
-        if(!currentShape)
+        if (!currentShape)
         {
             SpawnShape();
         }
 
-        if(stepTimer<=0)
+        if (stepTimer <= 0)
         {
             stepTimer = stepTime;
             if (currentShape)
@@ -63,7 +62,7 @@ public class MainGameManager : MonoBehaviour
     {
         int index = UnityEngine.Random.Range(0, shapes.Length);
         int indexColor = UnityEngine.Random.Range(0, colors.Length);
-        currentShape = Instantiate(shapes[index]).Init(colors[indexColor]);
+        currentShape = Instantiate(shapes[index], parent).Init(colors[indexColor]);
     }
 
     public void CleanCurrentShape()

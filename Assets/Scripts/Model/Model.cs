@@ -13,9 +13,10 @@ public class Model : MonoBehaviour
 
     private Transform[,] map;
 
-    private Model()
+    public Model Init()
     {
         map = new Transform[max_Rows, max_Columns];
+        return this;
     }
 
     public bool IsVaildMapPosition(Transform t)

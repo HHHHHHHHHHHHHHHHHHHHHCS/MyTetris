@@ -10,12 +10,13 @@ public class View : MonoBehaviour
     private RectTransform topBar;
     private GameObject restartButton;
 
-    private void Awake()
+    public View Init()
     {
         logoName = transform.Find(NameLayerTag.logoNamePath) as RectTransform;
         menuUI = transform.Find(NameLayerTag.menuUIPath) as RectTransform;
         topBar = transform.Find(NameLayerTag.topBarPath) as RectTransform;
         restartButton = transform.Find(NameLayerTag.restartButtonPath) .gameObject;
+        return this;
     }
 
     public void ShowMenuUI()

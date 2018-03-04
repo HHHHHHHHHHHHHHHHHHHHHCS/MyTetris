@@ -12,20 +12,21 @@ public class PlayState : FSMState
 
     public override void DoBeforeEntering()
     {
-        GameCtrl.View.ShowGameUI();
-        GameCtrl.CameraManager.ZoomIn();
-        GameCtrl.MainGameManager.StartGame();
+        Ctrl.Instance.View.ShowGameUI();
+        Ctrl.Instance.CameraManager.ZoomIn();
+        Ctrl.Instance.MainGameManager.StartGame();
     }
 
     public override void DoBeforeLeaving()
     {
-        GameCtrl.View.HideGameUI();
-        GameCtrl.View.ShowRestartButton();
-        GameCtrl.MainGameManager.PauseGame();
+        Ctrl.Instance.View.HideGameUI();
+        Ctrl.Instance.View.ShowRestartButton();
+        Ctrl.Instance.MainGameManager.PauseGame();
     }
 
     public void OnPauseButtonClick()
     {
-        FSM.PerformTransition(Transition.PauseGameClick);
+        Ctrl.Instance.AudioManager.PlayCursor();
+        Ctrl.Instance.FSMSystem.PerformTransition(Transition.PauseGameClick);
     }
 }

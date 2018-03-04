@@ -25,5 +25,9 @@ public class Shape : MonoBehaviour
             Ctrl.Instance.MainGameManager.CleanCurrentShape();
             Ctrl.Instance.Model.PlaceShape(transform);
         }
+        else
+        {
+            Ctrl.Instance.AudioManager.PlayDrop();
+        }
     }
 }
