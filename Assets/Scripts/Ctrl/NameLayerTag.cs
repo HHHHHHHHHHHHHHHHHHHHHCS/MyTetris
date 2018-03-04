@@ -18,4 +18,8 @@
     #region Tags
     public const string block = "Block";
     #endregion
+
+    #region Setting
+
+#endregion
 }

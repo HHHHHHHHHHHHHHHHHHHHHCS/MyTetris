@@ -8,6 +8,8 @@ public class AudioManager : MonoBehaviour
     private AudioClip cursorClip;
     [SerializeField]
     private AudioClip dropClip;
+    [SerializeField]
+    private AudioClip controlClip;
 
     private AudioSource audioSource;
 
@@ -16,7 +18,7 @@ public class AudioManager : MonoBehaviour
     public AudioManager Init()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.volume = isMute ? 0 : 1;
+        audioSource.mute = isMute ;
         return this;
     }
 
@@ -28,6 +30,10 @@ public class AudioManager : MonoBehaviour
     public void PlayDrop()
     {
         PlayAudio(dropClip);
+    }
+    public void PlayControl()
+    {
+        PlayAudio(controlClip);
     }
 
     private void PlayAudio(AudioClip clip)

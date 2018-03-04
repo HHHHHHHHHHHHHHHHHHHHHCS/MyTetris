@@ -33,7 +33,7 @@ public class MainGameManager : MonoBehaviour
         {
             SpawnShape();
         }
-
+        currentShape.SelfUpdate();
         if (stepTimer <= 0)
         {
             stepTimer = stepTime;

@@ -16,6 +16,38 @@ public class Shape : MonoBehaviour
         return this;
     }
 
+    public void SelfUpdate()
+    {
+        InputControl();
+    }
+
+    private void InputControl()
+    {
+        int hor = 0;
+        if (Input.GetKeyDown(KeyCode.A)
+            || Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            hor = -1;
+        }
+        else if (Input.GetKeyDown(KeyCode.D)
+            || Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            hor = 1;
+        }
+        if (hor != 0)
+        {
+            transform.position += new Vector3(hor, 0, 0);
+            if (!Ctrl.Instance.Model.IsVaildMapPosition(transform))
+            {
+                transform.position -= new Vector3(hor, 0, 0);
+            }
+            else
+            {
+                Ctrl.Instance.AudioManager.PlayControl();
+            }
+        }
+    }
+
     public void Fall()
     {
         transform.position += Vector3.down;

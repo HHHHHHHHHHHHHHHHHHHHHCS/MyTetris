@@ -5090,14 +5090,14 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -5171,8 +5171,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b5c6042c3063a46bc33e18a9b435b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorClip: {fileID: 0}
-  dropClip: {fileID: 0}
+  cursorClip: {fileID: 8300000, guid: ef714803c9fd0c14bbc1ddff6743785e, type: 3}
+  dropClip: {fileID: 8300000, guid: df98ec090b11487438b996d58e9342aa, type: 3}
+  controlClip: {fileID: 8300000, guid: 792f86c16893c4e4ea54613089483a52, type: 3}
 --- !u!1 &2108168967
 GameObject:
   m_ObjectHideFlags: 0
