@@ -1,6 +1,7 @@
 ﻿public class NameLayerTag
 {
     #region Names
+    public const string pivotPath = "Pivot";
     public const string mainCameraPath = "Main Camera";
     public const string shapesPath = "View/Shapes";
 

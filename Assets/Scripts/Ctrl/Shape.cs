@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Shape : MonoBehaviour
 {
+    private Transform pivot;
+
     public Shape Init(Color col)
     {
+        pivot = transform.Find(NameLayerTag.pivotPath);
+
         foreach (Transform t in transform)
         {
             if (t.CompareTag(NameLayerTag.block))
@@ -18,10 +22,11 @@ public class Shape : MonoBehaviour
 
     public void SelfUpdate()
     {
-        InputControl();
+        InputMove();
+        InputRotate();
     }
 
-    private void InputControl()
+    private void InputMove()
     {
         int hor = 0;
         if (Input.GetKeyDown(KeyCode.A)
@@ -40,6 +45,23 @@ public class Shape : MonoBehaviour
             if (!Ctrl.Instance.Model.IsVaildMapPosition(transform))
             {
                 transform.position -= new Vector3(hor, 0, 0);
+            }
+            else
+            {
+                Ctrl.Instance.AudioManager.PlayControl();
+            }
+        }
+    }
+
+    private void InputRotate()
+    {
+        if(Input.GetKeyDown(KeyCode.W)
+            || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            transform.RotateAround(pivot.position,Vector3.forward, -90);
+            if(!Ctrl.Instance.Model.IsVaildMapPosition(transform))
+            {
+                transform.RotateAround(pivot.position, Vector3.forward, 90);
             }
             else
             {

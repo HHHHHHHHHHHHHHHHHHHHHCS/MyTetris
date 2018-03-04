@@ -51,7 +51,10 @@ public class Model : MonoBehaviour
             if (child.CompareTag(NameLayerTag.block))
             {
                 var pos = child.position.RoundToPos();
-                map[pos.Key, pos.Value] = child;
+                if(pos.Value<max_Columns)
+                {
+                    map[pos.Key, pos.Value] = child;
+                }
             }
         }
     }
