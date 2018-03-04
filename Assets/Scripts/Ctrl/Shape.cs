@@ -13,12 +13,17 @@ public class Shape : MonoBehaviour
                 t.GetComponent<SpriteRenderer>().color = col;
             }
         }
-
         return this;
     }
 
     public void Fall()
     {
         transform.position += Vector3.down;
+        if (!Ctrl.Instance.Model.IsVaildMapPosition(transform))
+        {
+            transform.position -= Vector3.down;
+            Ctrl.Instance.MainGameManager.CleanCurrentShape();
+            Ctrl.Instance.Model.PlaceShape(transform);
+        }
     }
 }

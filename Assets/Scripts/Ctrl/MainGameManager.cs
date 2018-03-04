@@ -22,6 +22,11 @@ public class MainGameManager : MonoBehaviour
         stepTimer = stepTime;
     }
 
+    public MainGameManager Init()
+    {
+        return this;
+    }
+
     private void Update()
     {
         if (isPause) return;
@@ -59,5 +64,10 @@ public class MainGameManager : MonoBehaviour
         int index = UnityEngine.Random.Range(0, shapes.Length);
         int indexColor = UnityEngine.Random.Range(0, colors.Length);
         currentShape = Instantiate(shapes[index]).Init(colors[indexColor]);
+    }
+
+    public void CleanCurrentShape()
+    {
+        currentShape = null;
     }
 }

@@ -20,16 +20,16 @@ public class Model : MonoBehaviour
 
     public bool IsVaildMapPosition(Transform t)
     {
-        foreach(Transform child in t)
+        foreach (Transform child in t)
         {
-            if(t.CompareTag(NameLayerTag.block))
+            if (child.CompareTag(NameLayerTag.block))
             {
                 var pos = child.position.RoundToPos();
-                if(!IsInsideMap(pos))
+                if (!IsInsideMap(pos))
                 {
                     return false;
                 }
-                if(!map[pos.Key,pos.Value])
+                if (pos.Value < max_Columns && map[pos.Key, pos.Value])
                 {
                     return false;
                 }
@@ -38,8 +38,20 @@ public class Model : MonoBehaviour
         return true;
     }
 
-    public bool IsInsideMap(KeyValuePair<int,int> pos)
+    public bool IsInsideMap(KeyValuePair<int, int> pos)
     {
         return pos.Key >= 0 && pos.Key < max_Rows && pos.Value >= 0;
+    }
+
+    public void PlaceShape(Transform t)
+    {
+        foreach (Transform child in t)
+        {
+            if (child.CompareTag(NameLayerTag.block))
+            {
+                var pos = child.position.RoundToPos();
+                map[pos.Key, pos.Value] = child;
+            }
+        }
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Ctrl : MonoBehaviour
 {
+    public static Ctrl Instance;
+
     public Model Model { get; private set; }
     public View View { get; private set; }
     public CameraManager CameraManager { get; private set; }
@@ -13,6 +15,7 @@ public class Ctrl : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         Model = GameObject.Find("Model").GetComponent<Model>();
         View = GameObject.Find("View").GetComponent<View>();
         CameraManager = GameObject.Find(NameLayerTag.mainCameraPath).GetComponent<CameraManager>();
