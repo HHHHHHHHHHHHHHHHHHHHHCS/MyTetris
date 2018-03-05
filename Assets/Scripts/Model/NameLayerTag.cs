@@ -14,6 +14,9 @@
 
     public const string gamePlayUI = "UIRoot/GamePlayUI";
     public const string topBarPath = gamePlayUI + "/TopBar";
+    public const string nowScoreText = topBarPath + "/NowScoreLabel/NowScoreText";
+    public const string bestScoreText = topBarPath + "/BestScoreLabel/BestScoreText";
+
     #endregion
 
     #region Tags

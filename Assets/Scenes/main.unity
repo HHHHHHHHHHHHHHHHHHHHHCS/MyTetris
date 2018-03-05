@@ -2884,7 +2884,7 @@ GameObject:
   - component: {fileID: 1105857354}
   - component: {fileID: 1105857353}
   m_Layer: 5
-  m_Name: ScoreText
+  m_Name: BestScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3630,7 +3630,7 @@ GameObject:
   - component: {fileID: 1440561974}
   - component: {fileID: 1440561973}
   m_Layer: 5
-  m_Name: ScoreText
+  m_Name: NowScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5174,6 +5174,7 @@ MonoBehaviour:
   cursorClip: {fileID: 8300000, guid: ef714803c9fd0c14bbc1ddff6743785e, type: 3}
   dropClip: {fileID: 8300000, guid: df98ec090b11487438b996d58e9342aa, type: 3}
   controlClip: {fileID: 8300000, guid: 792f86c16893c4e4ea54613089483a52, type: 3}
+  lineClearClip: {fileID: 8300000, guid: d14745772c2930b4b9f8e459b066cab8, type: 3}
 --- !u!1 &2108168967
 GameObject:
   m_ObjectHideFlags: 0

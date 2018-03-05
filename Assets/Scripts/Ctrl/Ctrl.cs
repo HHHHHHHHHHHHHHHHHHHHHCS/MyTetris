@@ -6,10 +6,11 @@ public class Ctrl : MonoBehaviour
 {
     public static Ctrl Instance;
 
+    public MainGameManager MainGameManager { get; private set; }
     public Model Model { get; private set; }
     public View View { get; private set; }
     public CameraManager CameraManager { get; private set; }
-    public MainGameManager MainGameManager { get; private set; }
+    public JsonManager JsonManager { get; private set; }
     public AudioManager AudioManager { get; private set; }
     public FSMSystem FSMSystem { get; private set; }
 
@@ -17,6 +18,7 @@ public class Ctrl : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        JsonManager = new JsonManager().Init();
         Model = GameObject.Find("Model").GetComponent<Model>().Init();
         View = GameObject.Find("View").GetComponent<View>().Init();
         CameraManager = GameObject.Find(NameLayerTag.mainCameraPath).GetComponent<CameraManager>();
@@ -45,4 +47,5 @@ public class Ctrl : MonoBehaviour
         }
         FSMSystem.SetCurrentState(s);
     }
+
 }

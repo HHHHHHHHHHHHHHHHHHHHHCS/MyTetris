@@ -10,6 +10,8 @@ public class AudioManager : MonoBehaviour
     private AudioClip dropClip;
     [SerializeField]
     private AudioClip controlClip;
+    [SerializeField]
+    private AudioClip lineClearClip;
 
     private AudioSource audioSource;
 
@@ -31,9 +33,15 @@ public class AudioManager : MonoBehaviour
     {
         PlayAudio(dropClip);
     }
+
     public void PlayControl()
     {
         PlayAudio(controlClip);
+    }
+
+    public void PlayLineClean()
+    {
+        PlayAudio(lineClearClip);
     }
 
     private void PlayAudio(AudioClip clip)

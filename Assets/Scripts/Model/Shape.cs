@@ -96,7 +96,10 @@ public class Shape : MonoBehaviour
         {
             transform.position -= Vector3.down;
             Ctrl.Instance.MainGameManager.CleanCurrentShape();
-            Ctrl.Instance.Model.PlaceShape(transform);
+            if(Ctrl.Instance.Model.PlaceShape(transform))
+            {
+                Ctrl.Instance.AudioManager.PlayLineClean();
+            }
         }
         else
         {

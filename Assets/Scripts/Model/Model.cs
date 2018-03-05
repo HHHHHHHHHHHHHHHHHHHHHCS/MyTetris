@@ -13,9 +13,13 @@ public class Model : MonoBehaviour
 
     private Transform[,] map;
 
+    public int NowScore { get; private set; }
+    public SaveData OldSaveData { get; private set; }
+
     public Model Init()
     {
         map = new Transform[max_Columns, max_Rows];
+        LoadData();
         return this;
     }
 
@@ -44,7 +48,7 @@ public class Model : MonoBehaviour
         return pos.Key >= 0 && pos.Key < max_Columns && pos.Value >= 0;
     }
 
-    public void PlaceShape(Transform t)
+    public bool PlaceShape(Transform t)
     {
         foreach (Transform child in t)
         {
@@ -57,10 +61,27 @@ public class Model : MonoBehaviour
                 }
             }
         }
-        CheckMap();
+
+        var result = CheckMap();
+        if (result > 0)
+        {
+            AddScore(result);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
-    private void CheckMap()
+    private int AddScore(int number)
+    {
+        NowScore += number * number * max_Columns;
+        Ctrl.Instance.View.RefreshScore(NowScore);
+        return NowScore;
+    }
+
+    private int CheckMap()
     {
         Queue<int> que = new Queue<int>();
         for (int y = 0; y < max_Rows; y++)
@@ -76,6 +97,7 @@ public class Model : MonoBehaviour
         {
             MoveDownRowsAbove(y);
         }
+        return que.Count;
     }
 
 
@@ -114,5 +136,18 @@ public class Model : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void LoadData()
+    {
+        OldSaveData = Ctrl.Instance.JsonManager.GetData();
+    }
+
+    private void SaveData()
+    {
+        SaveData newData = OldSaveData;
+        newData.HighScore = NowScore > newData.HighScore ? NowScore : newData.HighScore;
+        newData.GameNumber += 1;
+        Ctrl.Instance.JsonManager.UpdateData(OldSaveData);
     }
 }
