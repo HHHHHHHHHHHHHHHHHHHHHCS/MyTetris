@@ -9,8 +9,8 @@ public class BackgroundSpawn : MonoBehaviour
     [SerializeField]
     private GameObject backgroundBlockPrefab;
 
-    private int rowCount = Model.max_Rows;
     private int columnCount = Model.max_Columns;
+    private int rowCount = Model.max_Rows;
     private float startPosX = Model.startPosX;
     private float startPosY = Model.startPosY;
     private float stepX = Model.stepX;
@@ -31,11 +31,11 @@ public class BackgroundSpawn : MonoBehaviour
         {
             Destroy(transform.GetChild(i).gameObject);
         }
-        for (int y = 0; y < columnCount; y++)
+        for (int y = 0; y < rowCount; y++)
         {
             Transform parent = new GameObject("Row" + y).transform;
             parent.SetParent(transform);
-            for (int x = 0; x < rowCount; x++)
+            for (int x = 0; x < columnCount; x++)
             {
                 SpawnPrefab(x, y, parent);
             }

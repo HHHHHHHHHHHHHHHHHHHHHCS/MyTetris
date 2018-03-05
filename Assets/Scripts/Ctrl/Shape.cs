@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Shape : MonoBehaviour
 {
+
+
     private Transform pivot;
+    private bool isSpeedUp;
+
 
     public Shape Init(Color col)
     {
@@ -22,8 +26,13 @@ public class Shape : MonoBehaviour
 
     public void SelfUpdate()
     {
+
         InputMove();
         InputRotate();
+        if (!isSpeedUp)
+        {
+            InputSpeedUp();
+        }
     }
 
     private void InputMove()
@@ -55,11 +64,11 @@ public class Shape : MonoBehaviour
 
     private void InputRotate()
     {
-        if(Input.GetKeyDown(KeyCode.W)
+        if (Input.GetKeyDown(KeyCode.W)
             || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            transform.RotateAround(pivot.position,Vector3.forward, -90);
-            if(!Ctrl.Instance.Model.IsVaildMapPosition(transform))
+            transform.RotateAround(pivot.position, Vector3.forward, -90);
+            if (!Ctrl.Instance.Model.IsVaildMapPosition(transform))
             {
                 transform.RotateAround(pivot.position, Vector3.forward, 90);
             }
@@ -70,9 +79,19 @@ public class Shape : MonoBehaviour
         }
     }
 
+    private void InputSpeedUp()
+    {
+        if (Input.GetKeyDown(KeyCode.S)
+            || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            isSpeedUp = true;
+            Ctrl.Instance.MainGameManager.SpeedUp();
+        }
+    }
+
     public void Fall()
     {
-        transform.position += Vector3.down;
+        transform.position += Model.stepX * Vector3.down;
         if (!Ctrl.Instance.Model.IsVaildMapPosition(transform))
         {
             transform.position -= Vector3.down;

@@ -13,15 +13,17 @@ public class MainGameManager : MonoBehaviour
 
     private Transform parent;
 
-    private const float stepTime = 0.8f;
+    private const float stepTime = 0.8f;//每隔多少秒进行一次跳跃
+    private const float multiple = 15f;//加速倍数
 
     private bool isPause = true;//游戏是否暂停，默认是暂停的
     private Shape currentShape = null;
+    private float nowStepTime = stepTime;
     private float stepTimer;
 
     public MainGameManager Init()
     {
-        stepTimer = stepTime;
+        stepTimer = nowStepTime;
         parent = GameObject.Find(NameLayerTag.shapesPath).transform;
         return this;
     }
@@ -36,7 +38,7 @@ public class MainGameManager : MonoBehaviour
         currentShape.SelfUpdate();
         if (stepTimer <= 0)
         {
-            stepTimer = stepTime;
+            stepTimer = nowStepTime;
             if (currentShape)
             {
                 currentShape.Fall();
@@ -68,5 +70,13 @@ public class MainGameManager : MonoBehaviour
     public void CleanCurrentShape()
     {
         currentShape = null;
+        nowStepTime = stepTime;
+        stepTimer = nowStepTime;
+    }
+
+    public void SpeedUp()
+    {
+        nowStepTime = stepTime / multiple;
+        stepTimer= stepTimer / multiple;
     }
 }
