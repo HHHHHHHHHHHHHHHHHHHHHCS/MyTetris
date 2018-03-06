@@ -96,7 +96,15 @@ public class Shape : MonoBehaviour
         {
             transform.position -= Vector3.down;
             Ctrl.Instance.MainGameManager.CleanCurrentShape();
-            if(Ctrl.Instance.Model.PlaceShape(transform))
+            var isPlace = Ctrl.Instance.Model.PlaceShape(transform);
+            var isGameOver = Ctrl.Instance.Model.IsGameOver(transform);
+            if(isGameOver)
+            {
+                Ctrl.Instance.MainGameManager.PauseGame();
+                Ctrl.Instance.View.ShowGameOverUI(Ctrl.Instance.Model.NowScore);
+                Ctrl.Instance.Model.SaveData();
+            }
+            else if (isPlace)
             {
                 Ctrl.Instance.AudioManager.PlayLineClean();
             }

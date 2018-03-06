@@ -59,11 +59,6 @@ public class JsonManager
 
     public string UpdateData(SaveData saveData)
     {
-        var oldData = GetData();
-        if (oldData.HighScore > saveData.HighScore)
-        {
-            saveData.HighScore = oldData.HighScore;
-        }
         return Save(saveData);
     }
 }

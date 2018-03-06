@@ -74,6 +74,22 @@ public class Model : MonoBehaviour
         }
     }
 
+    public bool IsGameOver(Transform t)
+    {
+        foreach (Transform child in t)
+        {
+            if (child.CompareTag(NameLayerTag.block))
+            {
+                var pos = child.position.RoundToPos();
+                if (pos.Value >= max_Rows)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     private int AddScore(int number)
     {
         NowScore += number * number * max_Columns;
@@ -99,7 +115,6 @@ public class Model : MonoBehaviour
         }
         return que.Count;
     }
-
 
     private bool CheckIsRowFull(int row)
     {
@@ -143,11 +158,19 @@ public class Model : MonoBehaviour
         OldSaveData = Ctrl.Instance.JsonManager.GetData();
     }
 
-    private void SaveData()
+    public void SaveData()
     {
         SaveData newData = OldSaveData;
         newData.HighScore = NowScore > newData.HighScore ? NowScore : newData.HighScore;
         newData.GameNumber += 1;
-        Ctrl.Instance.JsonManager.UpdateData(OldSaveData);
+        Ctrl.Instance.JsonManager.UpdateData(newData);
+    }
+
+    public void Restart()
+    {
+        NowScore = 0;
+        LoadData();
+        Ctrl.Instance.MainGameManager.CleanChild();
+        map = new Transform[max_Columns, max_Rows];
     }
 }

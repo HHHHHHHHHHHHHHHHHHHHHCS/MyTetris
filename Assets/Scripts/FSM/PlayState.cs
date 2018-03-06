@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayState : FSMState
 {
@@ -12,7 +13,8 @@ public class PlayState : FSMState
 
     public override void DoBeforeEntering()
     {
-        Ctrl.Instance.View.ShowGameUI();
+        Ctrl.Instance.View.ShowGameUI(Ctrl.Instance.Model.NowScore
+            , Ctrl.Instance.Model.OldSaveData.HighScore);
         Ctrl.Instance.CameraManager.ZoomIn();
         Ctrl.Instance.MainGameManager.StartGame();
     }
@@ -28,5 +30,17 @@ public class PlayState : FSMState
     {
         Ctrl.Instance.AudioManager.PlayCursor();
         Ctrl.Instance.FSMSystem.PerformTransition(Transition.PauseGameClick);
+    }
+
+    public void OnRestartButtonClick()
+    {
+        Ctrl.Instance.Model.Restart();
+        Ctrl.Instance.View.HideGameOverUI();
+        Ctrl.Instance.MainGameManager.StartGame();
+    }
+
+    public void OnHomeButtonClick()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

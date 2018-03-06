@@ -79,4 +79,12 @@ public class MainGameManager : MonoBehaviour
         nowStepTime = stepTime / multiple;
         stepTimer= stepTimer / multiple;
     }
+
+    public void CleanChild()
+    {
+        foreach(Transform item in parent)
+        {
+            Destroy(item.gameObject);
+        }
+    }
 }
