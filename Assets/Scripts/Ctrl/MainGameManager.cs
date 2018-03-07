@@ -59,6 +59,11 @@ public class MainGameManager : MonoBehaviour
 
     public void StartGame()
     {
+        if (isPause)
+        {
+            nowStepTime = stepTime;
+            stepTimer = nowStepTime;
+        }
         isPause = false;
     }
 

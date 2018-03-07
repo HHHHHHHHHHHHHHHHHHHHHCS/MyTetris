@@ -173,4 +173,10 @@ public class Model : MonoBehaviour
         Ctrl.Instance.MainGameManager.CleanChild();
         map = new Transform[max_Columns, max_Rows];
     }
+
+    public void ClearData()
+    {
+        OldSaveData = new SaveData();
+        Ctrl.Instance.JsonManager.UpdateData(OldSaveData);
+    }
 }

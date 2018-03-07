@@ -31,7 +31,7 @@ public class View : MonoBehaviour
         setttingUI = transform.Find(NameLayerTag.settingUIPath) as RectTransform;
         rankUI = transform.Find(NameLayerTag.rankUIPath) as RectTransform;
         restartButton = transform.Find(NameLayerTag.restartButtonPath).gameObject;
-        muteAudioImage=transform.Find(NameLayerTag.muteAudioImagePath).gameObject;
+        muteAudioImage = transform.Find(NameLayerTag.muteAudioImagePath).gameObject;
         nowScoreText = transform.Find(NameLayerTag.nowScoreTextPath).GetComponent<Text>();
         bestScoreText = transform.Find(NameLayerTag.bestScoreTextPath).GetComponent<Text>();
         gameOverScoreText = transform.Find(NameLayerTag.gameOverScoreTextPath).GetComponent<Text>();
@@ -53,10 +53,12 @@ public class View : MonoBehaviour
 
     public void HideMenuUI()
     {
-        logoName.DOAnchorPosY(320f, 1f)
-            .onComplete += () => { logoName.gameObject.SetActive(false); };
-        menuUI.DOAnchorPosY(-200f, 1f)
-            .onComplete += () => { menuUI.gameObject.SetActive(false); };
+        //logoName.DOAnchorPosY(320f, 1f)
+        //    .onComplete += () => { logoName.gameObject.SetActive(false); };
+        //menuUI.DOAnchorPosY(-200f, 1f)
+        //    .onComplete += () => { menuUI.gameObject.SetActive(false); };
+        logoName.gameObject.SetActive(false);
+        menuUI.gameObject.SetActive(false);
     }
 
     public void ShowGameUI(int score = 0, int bestScore = 0)
@@ -74,8 +76,9 @@ public class View : MonoBehaviour
 
     public void HideGameUI()
     {
-        topBarUI.DOAnchorPosY(250f, 1f)
-            .onComplete += () => { topBarUI.gameObject.SetActive(false); };
+        //topBarUI.DOAnchorPosY(250f, 1f)
+        //    .onComplete += () => { topBarUI.gameObject.SetActive(false); };
+        topBarUI.gameObject.SetActive(false);
     }
 
     public void ShowRestartButton()
@@ -112,14 +115,17 @@ public class View : MonoBehaviour
         muteAudioImage.SetActive(tf);
     }
 
-    public void ShowRankUI(int nowScore,int bestScore,int gameCount)
+    public void ShowRankUI(int nowScore, int bestScore, int gameCount, bool needAnim = true)
     {
         rankNowScoreText.text = nowScore.ToString();
         rankBestScoreText.text = bestScore.ToString();
         rankGameCountText.text = gameCount.ToString();
-        rankUI.gameObject.SetActive(true);
-        rankUI.GetChild(0).localScale = Vector3.zero;
-        rankUI.GetChild(0).DOScale(Vector3.one, 0.5f);
+        if(needAnim)
+        {
+            rankUI.gameObject.SetActive(true);
+            rankUI.GetChild(0).localScale = Vector3.zero;
+            rankUI.GetChild(0).DOScale(Vector3.one, 0.5f);
+        }
     }
 
     public void HideRankUI()

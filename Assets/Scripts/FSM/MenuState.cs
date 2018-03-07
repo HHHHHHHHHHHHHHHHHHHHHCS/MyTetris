@@ -58,4 +58,20 @@ public class MenuState : FSMState
     {
         Ctrl.Instance.View.HideRankUI();
     }
+
+    public void OnDeleteButtonClick()
+    {
+        Ctrl.Instance.Model.ClearData();
+        var model = Ctrl.Instance.Model;
+        Ctrl.Instance.View.ShowRankUI(
+                    model.NowScore, model.OldSaveData.BestScore
+                    , model.OldSaveData.GameCount, false);
+    }
+
+    public void OnRestartButtonClick()
+    {
+        Ctrl.Instance.AudioManager.PlayCursor();
+        Ctrl.Instance.Model.Restart();
+        Ctrl.Instance.FSMSystem.PerformTransition(Transition.StartButtonClick);
+    }
 }

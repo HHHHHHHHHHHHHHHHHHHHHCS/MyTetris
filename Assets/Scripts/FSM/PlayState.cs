@@ -22,22 +22,14 @@ public class PlayState : FSMState
     public override void DoBeforeLeaving()
     {
         Ctrl.Instance.View.HideGameUI();
-        Ctrl.Instance.View.ShowRestartButton();
         Ctrl.Instance.MainGameManager.PauseGame();
     }
 
     public void OnPauseButtonClick()
     {
         Ctrl.Instance.AudioManager.PlayCursor();
+        Ctrl.Instance.View.ShowRestartButton();
         Ctrl.Instance.FSMSystem.PerformTransition(Transition.PauseGameClick);
-    }
-
-    public void OnRestartButtonClick()
-    {
-        Ctrl.Instance.AudioManager.PlayCursor();
-        Ctrl.Instance.Model.Restart();
-        Ctrl.Instance.View.HideGameOverUI();
-        Ctrl.Instance.MainGameManager.StartGame();
     }
 
     public void OnHomeButtonClick()
