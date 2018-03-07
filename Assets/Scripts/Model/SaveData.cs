@@ -1,5 +1,5 @@
 ﻿public class SaveData
 {
-    public int HighScore { get; set; }
-    public int GameNumber { get; set; }
+    public int BestScore { get; set; }
+    public int GameCount { get; set; }
 }

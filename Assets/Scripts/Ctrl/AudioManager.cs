@@ -15,13 +15,34 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource audioSource;
 
-    private bool isMute;
+    public bool IsMute
+    {
+        get
+        {
+            return audioSource.mute;
+        }
+
+        set
+        {
+            audioSource.mute = value;
+        }
+    }
+
 
     public AudioManager Init()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.mute = isMute ;
         return this;
+    }
+
+    public void SwitchMuteAudio()
+    {
+        IsMute = !IsMute;
+    }
+
+    public void ChangeMuteAudio(bool tf = false)
+    {
+        IsMute = tf;
     }
 
     public void PlayCursor()

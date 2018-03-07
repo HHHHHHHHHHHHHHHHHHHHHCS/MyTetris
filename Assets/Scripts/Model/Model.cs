@@ -161,8 +161,8 @@ public class Model : MonoBehaviour
     public void SaveData()
     {
         SaveData newData = OldSaveData;
-        newData.HighScore = NowScore > newData.HighScore ? NowScore : newData.HighScore;
-        newData.GameNumber += 1;
+        newData.BestScore = NowScore > newData.BestScore ? NowScore : newData.BestScore;
+        newData.GameCount += 1;
         Ctrl.Instance.JsonManager.UpdateData(newData);
     }
 

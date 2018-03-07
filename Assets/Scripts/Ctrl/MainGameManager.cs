@@ -42,6 +42,13 @@ public class MainGameManager : MonoBehaviour
             if (currentShape)
             {
                 currentShape.Fall();
+                foreach (Transform t in parent)
+                {
+                    if (t.childCount <= 1)
+                    {
+                        Destroy(t.gameObject);
+                    }
+                }
             }
         }
         else
@@ -77,12 +84,12 @@ public class MainGameManager : MonoBehaviour
     public void SpeedUp()
     {
         nowStepTime = stepTime / multiple;
-        stepTimer= stepTimer / multiple;
+        stepTimer = stepTimer / multiple;
     }
 
     public void CleanChild()
     {
-        foreach(Transform item in parent)
+        foreach (Transform item in parent)
         {
             Destroy(item.gameObject);
         }

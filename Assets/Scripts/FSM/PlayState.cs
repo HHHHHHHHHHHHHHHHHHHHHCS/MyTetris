@@ -14,7 +14,7 @@ public class PlayState : FSMState
     public override void DoBeforeEntering()
     {
         Ctrl.Instance.View.ShowGameUI(Ctrl.Instance.Model.NowScore
-            , Ctrl.Instance.Model.OldSaveData.HighScore);
+            , Ctrl.Instance.Model.OldSaveData.BestScore);
         Ctrl.Instance.CameraManager.ZoomIn();
         Ctrl.Instance.MainGameManager.StartGame();
     }
@@ -34,6 +34,7 @@ public class PlayState : FSMState
 
     public void OnRestartButtonClick()
     {
+        Ctrl.Instance.AudioManager.PlayCursor();
         Ctrl.Instance.Model.Restart();
         Ctrl.Instance.View.HideGameOverUI();
         Ctrl.Instance.MainGameManager.StartGame();
